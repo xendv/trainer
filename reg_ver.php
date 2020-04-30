@@ -33,7 +33,7 @@
         $response['pass_error'] = '* В целях безопасности Пароль не может состоять из одних пробелов!';
         $response['success'] = false;
     }
-    if(empty($_POST['pass2'])) {
+    if(empty($_POST['pass_2'])) {
         $response['pass2_error'] = '* Поле Подтверждения пароля не может быть пустым!';
         $response['success'] = false;
     }
@@ -60,7 +60,7 @@
     }
     /*Продолжаем проверять введеные данные
     Проверяем на совподение пароли*/
-    if($_POST['pass'] != $_POST['pass2']){
+    if($_POST['pass'] != $_POST['pass_2']){
         $response['pass2_error'] = '* Пароли не совпадают';
         $response['success'] = false;
     }
