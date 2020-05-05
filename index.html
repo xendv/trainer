@@ -9,10 +9,10 @@
     <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Clever Template | Home</title>
+    <title>Trainer | Home</title>
 
-    <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <!-- Favicon 
+    <link rel="icon" href="img/core-img/favicon.ico">-->
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
@@ -40,7 +40,6 @@
         unset($_GET["session_quit"]);
         header("Refresh:0; url=?");
     }
-    echo "fffffffffffff";
 
     include"config.php"; 
    ?>
@@ -57,8 +56,8 @@
                     <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
                         <!-- Register / Login -->
                         <div class="register-login-area">
-                            <a href="#" class="btn">Register</a>
-                            <a href="index-login.html" class="btn active">Login</a>
+                            <a href="#register" class="btn">Регистрация</a>
+                            <a href="index-login.html" class="btn active">Войти</a>
                         </div>
                 </nav>
             </div>
@@ -67,15 +66,15 @@
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Hero Area Start ##### -->
-    <section class="hero-area bg-img bg-overlay-2by5" style="background-image: url(img/bg-img/bg1.jpg);">
+    <section class="hero-area bg-img bg-overlay-2by5" style="background-image: url(img/bg-img/c6.jpg);">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <!-- Hero Content -->
                     <div class="hero-content text-center">
                         <h2>Get up and do things, you lazy bastard!</h2>
-                        <a href="#register" class="btn clever-btn">Get Started</a>
-                        <a href="index-login.html" class="btn clever-btn"> I already have account</a>
+                        <a href="#register" class="btn clever-btn">Начать</a>
+                        <a href="index-login.html" class="btn clever-btn">У меня уже есть аккаунт</a>
                     </div>
                 </div>
             </div>
@@ -111,47 +110,47 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="forms text-center">
-                            <h4 >Register now</h4>
+                            <h4>Зарегистрируйтесь сейчас</h4>
                             <form id="reg_form" action="#" method="post">
                                 <div class="row">
                                     <div class="col-12 col-lg-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="text" name = "login" placeholder="Email" size = "32" maxlength = "32" required>
+                                            <input type="text" class="form-control" id="text" name = "login" placeholder="Почта" size = "32" maxlength = "32" required>
                                             <p id="login_error" class="has-error" ></p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="text" name = "f_name" placeholder="Family name" size = "32" maxlength = "32" required>
+                                            <input type="text" class="form-control" id="text" name = "f_name" placeholder="Фамилия" size = "32" maxlength = "32" required>
                                             <p id="f_name_error" class="has-error" ></p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="text" name = "name" placeholder="Name" size = "32" maxlength = "32" required>
+                                            <input type="text" class="form-control" id="text" name = "name" placeholder="Имя" size = "32" maxlength = "32" required>
                                             <p id="name_error" class="has-error" ></p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="text" name = "m_name" placeholder="Middle name" size = "32" maxlength = "32" required>
+                                            <input type="text" class="form-control" id="text" name = "m_name" placeholder="Отчество" size = "32" maxlength = "32" required>
                                             <p id="m_name_error" class="has-error" ></p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6">
                                         <div class="form-group">
-                                            <input type="password" class="form-control" id="text" name = "pass" placeholder="Password" size = "32" maxlength = "32" required>
+                                            <input type="password" class="form-control" id="text" name = "pass" placeholder="Пароль" size = "32" maxlength = "32" required>
                                             <p id="pass_error" class="has-error" ></p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6">
                                         <div class="form-group">
-                                            <input type="password" class="form-control" id="text" name = "pass_2" placeholder="Repeat your password" size = "32" maxlength = "32" required>
+                                            <input type="password" class="form-control" id="text" name = "pass_2" placeholder="Повторите пароль" size = "32" maxlength = "32" required>
                                             <p id="pass2_error" class="has-error" ></p>
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn clever-btn w-100" id="submit_btn">Submit</button>
+                                        <button class="btn clever-btn w-100" id="submit_btn">Зарегистрироваться</button>
                                     </div>
                                 </div>
                             </form>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 23 2020 г., 11:16
+-- Время создания: Май 05 2020 г., 12:27
 -- Версия сервера: 10.4.8-MariaDB
 -- Версия PHP: 7.3.11
 
@@ -82,7 +82,6 @@ CREATE TABLE `test_results` (
 INSERT INTO `test_results` (`user_id`, `test_id`, `score`) VALUES
 (1, 1, 0),
 (4, 1, 15),
-(7, 1, 15),
 (11, 1, 10),
 (18, 1, 10);
 
@@ -108,11 +107,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `family_name`, `first_name`, `middle_name`, `login`, `password`, `group_id`, `s_score`) VALUES
-(4, 'Студентов', 'Николай', 'Владимирович', 'student@mail.ru', 'c81e728d9d4c2f636f067f89cc14862c', 3, 15),
-(7, 'Рябинина', 'Екатерина', 'Николаевна', 'kate@google.com', 'c81e728d9d4c2f636f067f89cc14862c', 3, 15),
+(4, 'Студентов', 'Николай', 'Владимирович', 'student@mail.ru', 'eccbc87e4b5ce2fe28308fd9f2a7baf3', 3, 15),
 (10, 'Лекторов', 'Владислав', 'Сергеевич', 'teach@mail.ru', 'c81e728d9d4c2f636f067f89cc14862c', 2, 0),
 (11, 'Новый', 'Петр', 'Сергеевич', 'pro_stud@mail.ru', 'c81e728d9d4c2f636f067f89cc14862c', 3, 10),
-(12, 'Администратор', 'Администратор', 'Администратор', 'admin@pochta.ru', '21232f297a57a5a743894a0e4a801fc3', 1, 0);
+(12, 'Администратор', 'Администратор', 'Администратор', 'admin@pochta.ru', 'c4ca4238a0b923820dcc509a6f75849b', 1, 0),
+(22, 'Фиксик', 'Нолик', 'Папусов', 'stnew@mail.ru', 'eccbc87e4b5ce2fe28308fd9f2a7baf3', 3, 0);
 
 --
 -- Индексы сохранённых таблиц
@@ -162,7 +161,7 @@ ALTER TABLE `tests`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

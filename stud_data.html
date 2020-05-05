@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Clever - Education &amp; Courses Template | Blog</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/my_style.css">
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/jquery.js"></script>
+
+</head>
+<!-- elseif ($_SESSION["user_group_id"]=="1") {
+        header("Location: main.html");
+    }
+    -->
+<body>
+    <?php 
+    session_start();
+    if(!isset($_SESSION['user_login'])){
+        header("Location: index-login.html");
+    } elseif($_SESSION['user_group_id']=="3"){
+        header("location: main.html");
+    } 
+    if (isset($_GET["session_quit"])) { 
+        session_destroy();
+        unset($_GET["session_quit"]);
+        unset($_SESSION);
+        header("location: index.html");
+        exit();
+    }
+    require_once("functions.php");
+    ?>
+  <!-- ##### Header Area Start ##### -->
+  <header class="header-area">
+    <!-- Navbar Area -->
+    <div class="clever-main-menu">
+        <div class="classy-nav-container breakpoint-off">
+            <!-- Menu -->
+            <nav class="classy-navbar justify-content-between" id="cleverNav">
+                <!-- Logo -->
+                <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                    <!-- Register / Login -->
+                    <div class="register-login-area">
+                        <text style=" font-size: medium;"><?php echo $_SESSION['user_login'] ?>: </text>
+                        <a class="btn" href="main_a_t.html">Личный кабинет</a>
+                        <a class="btn active" href="index.html?session_quit=1" name = "logout_btn">Выйти</a>
+                    </div>
+            </nav>
+        </div>
+    </div>
+                <!--  -->
+                <div class="register-login-area" style = "text-align: right; padding-left: 2em;  padding-right: 2em;">
+                    <a class="btn" href="themes_list.php">Задания</a>
+                    <a class="btn" href="stud_data.html">Результаты учеников</a>
+                </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+
+    <h2 style="text-align: center; margin-top: 10px;margin-bottom: 10px">Успехи обучающихся</h3>  
+    
+    <!-- ##### Students' Data Start ##### -->
+    <section class="blog-area blog-page section-padding-100" style="padding-top: 50px; padding-bottom: 20px;">
+        <div class="container-fluid">
+
+                <!-- Single Blog Area -->
+       
+                    <div class="single-blog-area fadeInUp " style="margin-bottom: 40px;">
+                        <!-- Blog Content -->
+                        <div class="blog-content align-items-center">
+                        
+                            <h4 style="text-align: center;">Данные учеников</h4>
+                        
+                        
+                           <!-- <div class="forms"style="align-items: center;" >-->
+                        
+                                <table class="table" ">
+                                    <thead>
+                                        <tr>
+                                            <th>Фамилия</th>
+                                            <th>Имя</th>
+                                            <th>Отчество</th>
+                                            <th>Логин</th>
+                                            <th>Итоговый балл</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $link = link_to_db("distlearn");
+                                            $sql = "SELECT * FROM `users` WHERE `group_id`=3";
+                                            $result = mysqli_query($link, $sql);
+                                            // выводим в HTML-таблицу данные из таблицы MySQL
+                                            while($data = mysqli_fetch_array($result)){ 
+                                                echo '<tr>';
+                                                echo '<td>'.$data['family_name'].'</td>';
+                                                echo '<td>'.$data['first_name'].'</td>';
+                                                echo '<td>'.$data['middle_name'].'</td>';
+                                                echo '<td>'.$data['login'].'</td>';
+                                                echo '<td>'.$data['s_score'].'</td>';
+                                                echo '</tr>';
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                        
+                        
+                            <!--</div>-->
+                        
+                        </div>
+                    </div>
+        </div>
+    </section>
+    <!-- ##### Students' Data End ##### -->
+
+    <!-- ##### Manage Students Start ##### -->
+    <section class="blog-area blog-page section-padding-100" style="padding-top: 50px;padding-bottom: 0px ">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Single Blog Area -->
+                    <div class="col-12 col-lg-6">
+                        <div class="single-blog-area mb-100">
+                            <!-- Blog Content -->
+                            <div class="blog-content align-items-center">
+                                <h4 style="text-align: center;">Добавить ученика</h4>
+                                <div class="forms" style="align-items: center">
+                                    <form id="reg_form" action="" method="POST">
+                                        <table>
+                                            <table class="table">
+                                                <tr>
+                                                    <td><label>Электронная почта:</label></td>
+                                                    <td><input type="text" class="form-control" name="login" size="15" maxlength="32"
+                                                            required></td>
+                                                    <td>
+                                                        <p id="login_error" class="has-error"></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label>Пароль:</label></td>
+                                                    <td><input type="password" class="form-control" name="pass" size="15" maxlength="15"
+                                                            required></td>
+                                                    <td>
+                                                        <p id="pass_error" class="has-error"></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label>Подтвердите пароль:</label></td>
+                                                    <td><input type="password" class="form-control" name="pass_2" size="15" maxlength="32"
+                                                            required></td>
+                                                    <td>
+                                                        <p id="pass2_error" class="has-error"></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label>Фамилия:</label></td>
+                                                    <td><input type="text" class="form-control" name="f_name" size="15" maxlength="32"
+                                                            required></td>
+                                                    <td>
+                                                        <p id="f_name_error" class="has-error"></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label>Имя:</label></td>
+                                                    <td><input type="text" class="form-control" name="name" size="15" maxlength="32"
+                                                            required></td>
+                                                    <td>
+                                                        <p id="name_error" class="has-error"></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label>Отчество:</label></td>
+                                                    <td><input type="text" class="form-control" name="m_name" size="15" maxlength="32"
+                                                            required></td>
+                                                    <td>
+                                                        <p id="m_name_error" class="has-error"></p>
+                                                    </td>
+                                                </tr>
+                    
+                                            </table>
+                                            <hr>
+                                            <button class="btn" style="background-color: lightblue;" id="add_btn" name="Submit" href="#">Зарегистрировать ученика</button>
+                                    </form>
+                                    <script type="text/javascript">
+                                        $(document).on("click", "#add_btn", function (e) {
+                                            e.preventDefault();
+                                            //ajax form validation
+                                            $.ajax({
+                                                type: 'post',
+                                                url: 'reg_ver.php',
+                                                dataType: 'html',
+                                                data: $("#reg_form").serialize(),
+                                                success: function (html) {
+                                                    var result = jQuery.parseJSON(html);
+                                                    if (result.success) {
+                                                        document.location.href = "main_a_t.html";
+                                                    } else {
+                                                        $("#login_error").text(result.login_error);
+                                                        $("#pass_error").text(result.pass_error);
+                                                        $("#pass2_error").text(result.pass2_error);
+                                                        $("#f_name_error").text(result.f_name_error);
+                                                        $("#name_error").text(result.name_error);
+                                                        $("#m_name_error").text(result.m_name_error);
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                    </form>
+                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Blog Area -->
+                    <div class="col-12 col-lg-6">
+                        <div class="single-blog-area mb-100">
+                            <!-- Blog Content -->
+                            <div class="blog-content align-items-center">
+                                <h4 style="text-align: center">Удалить пользователя</h4>
+                                <div class="forms" style="align-items: center">
+                                <form  id="del_form" action="" method="POST" > 
+                                    <table class="table">
+                                        <tr>
+                                            <td>Электронная почта:</td>
+                                            <td><input type="text" class="form-control" name = "del_login" size = "32" maxlength = "32" required></td>
+                                            <td><p id="del_login_error" class="has-error" ></p></td>
+                                        </tr>
+                                    </table> 
+                                    <hr>
+                                <button class="btn" id="del_btn" style="background-color: lightblue;" name="Submit" href="#">Удалить пользователя</button>
+                                </form> 
+                                <script type="text/javascript">
+                                    $(document).on("click","#del_btn",function(e) {
+                                        e.preventDefault();
+                                        //ajax form validation
+                                        $.ajax({
+                                            type: 'post',
+                                            url: 'del_ver.php',
+                                            dataType: 'html',
+                                            data:$("#del_form").serialize(),
+                                            success: function (html) {
+                                                var result = jQuery.parseJSON(html);
+                                                if(result.success){
+                                                   document.location.href = "main_a_t.html";
+                                                }else{
+                                                    $("#del_login_error").text(result.del_login_error);
+                                                }
+                                            }
+                                        });
+                                    });
+                                </script>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+    
+            </div>
+    </section>
+    <!-- ##### Manage Students End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <!-- Top Footer Area -->
+        <div class="top-footer-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Footer Logo -->
+                        <div class="footer-logo">
+                            <a href="index.html"><img src="img/core-img/logo2.png" alt=""></a>
+                        </div>
+                        <!-- Copywrite -->
+                        <p><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> </a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+</body>
+
+</html>

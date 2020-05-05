@@ -19,7 +19,7 @@
     }    
      //Проверяем наличие ошибок
      if($response['success']){
-        include_once ("config.php");
+        //include_once ("config.php");
         //Подключаемся к БД users
         $link = link_to_db("distlearn");
         /*Создаем запрос на выборку из базы 

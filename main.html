@@ -9,7 +9,7 @@
     <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Clever - Education &amp; Courses Template | Blog</title>
+    <title>Clever | ЛК</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -31,10 +31,9 @@
     session_start();
     if(!isset($_SESSION['user_login'])){
         header("Location: index-login.html");
-    } elseif ($_SESSION["user_group_id"]=="1") {
-        header("Location: main.html");
-    }
-    }
+    } elseif($_SESSION['user_group_id']=="1"){
+        header("location: main_a_t.html");
+    } 
     if (isset($_GET["session_quit"])) { 
         session_destroy();
         unset($_GET["session_quit"]);
@@ -54,9 +53,9 @@
                     <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
                         <!-- Register / Login -->
                         <div class="register-login-area">
-                            <text  class="btn" ><?php echo $_SESSION['user_login']?>: </text>
+                            <text class="btn"><?php echo $_SESSION['user_login'] ?>: </text>
                             <a class="btn" href="themes_list.php">Мои задания</a>
-                            <a class="btn" href="main.php">Личный кабинет</a>
+                            <a class="btn" href="main.html">Личный кабинет</a>
                             <a class="btn active" href="index.html?session_quit=1" name = "logout_btn">Выйти</a>
                        
                         </div>
@@ -101,7 +100,7 @@
                         <!-- Blog Content -->
                         <div class="blog-content align-items-center">
                             <h4 style="text-align: center">Сменить настройки пользователя</h4>
-                            <div class="forms" style="align-items center;">
+                            <div class="forms" style="align-items: center">
                             <form  action="change_pass_ver.php" method="POST" > 
                                 <table class="table"><tr></tr>
                                     <td>Текущий пароль:</td>
