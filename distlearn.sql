@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 05 2020 г., 12:27
+-- Время создания: Май 11 2020 г., 16:14
 -- Версия сервера: 10.4.8-MariaDB
 -- Версия PHP: 7.3.11
 
@@ -21,6 +21,27 @@ SET time_zone = "+00:00";
 --
 -- База данных: `distlearn`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `courses`
+--
+
+CREATE TABLE `courses` (
+  `SUB_TYPE` int(10) NOT NULL,
+  `COURSE_NAME` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `COURSE_SUB_NAME` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `DESCRIPTION` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `courses`
+--
+
+INSERT INTO `courses` (`SUB_TYPE`, `COURSE_NAME`, `COURSE_SUB_NAME`, `DESCRIPTION`) VALUES
+(1, 'English', 'Language', '- Grammar\r\n- Vocabulary\r\n- Use of english'),
+(2, 'Russian', 'Language', 'Vodka, Medvedi i balalayka');
 
 -- --------------------------------------------------------
 
@@ -80,6 +101,7 @@ CREATE TABLE `test_results` (
 --
 
 INSERT INTO `test_results` (`user_id`, `test_id`, `score`) VALUES
+(0, 2, 0),
 (1, 1, 0),
 (4, 1, 15),
 (11, 1, 10),
@@ -116,6 +138,13 @@ INSERT INTO `users` (`id`, `family_name`, `first_name`, `middle_name`, `login`, 
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`SUB_TYPE`),
+  ADD UNIQUE KEY `SUB_TYPE` (`SUB_TYPE`);
 
 --
 -- Индексы таблицы `lessons`

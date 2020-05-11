@@ -82,7 +82,7 @@
         </div>
         <a style="text-align: left;" href="less_1_1.php"><<<<<<< Предыдущая страница: Технические термины</a>
         <text>  ||   </text>
-        <a style="text-align: right, text-indent: 20px;" href="less_1_test.php">Тест по теме: Технические и компьютерные термины >>>>>>></a>
+        <a style="text-align: right; text-indent: 20px;" href="less_1_test.php">Тест по теме: Технические и компьютерные термины >>>>>>></a>
            
     </div>
 
