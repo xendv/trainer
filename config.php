@@ -11,6 +11,6 @@ define('DB_USER','root');
 define('DB_PASSWORD','');
 
  //БД
- define('DB_DATABASE','distlearn');
+ define('DB_DATABASE','trainer');
 
  ?>

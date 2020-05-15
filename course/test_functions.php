@@ -132,7 +132,7 @@
     
     function form_course_row(){
         include_once("../functions.php");
-        $connection = link_to_db("distlearn");
+        $connection = link_to_db("trainer");
         $query = mysqli_query($connection,"SELECT * FROM courses");
         while($course_data = mysqli_fetch_assoc($query)){
             echo <<<EOF
@@ -168,7 +168,7 @@
     
     function get_course_data($sub_type){
         include_once("../functions.php");
-        $connection = link_to_db("distlearn");
+        $connection = link_to_db("trainer");
         $query = mysqli_query($connection,"SELECT * FROM courses WHERE SUB_TYPE='".$sub_type."'");
         return mysqli_fetch_assoc($query);
     }
