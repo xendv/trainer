@@ -1,132 +1,153 @@
--- MySQL dump 10.16  Distrib 10.1.26-MariaDB, for debian-linux-gnu (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.9.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: db
--- ------------------------------------------------------
--- Server version	10.1.26-MariaDB-0+deb9u1
+-- Хост: 127.0.0.1
+-- Время создания: Май 15 2020 г., 14:34
+-- Версия сервера: 10.4.8-MariaDB
+-- Версия PHP: 7.3.11
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `SectionHeaders`
+-- База данных: `nnka_db`
 --
 
-DROP TABLE IF EXISTS `SectionHeaders`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `SectionHeaders` (
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `sectionheaders`
+--
+
+CREATE TABLE `sectionheaders` (
   `ID` tinyint(4) DEFAULT NULL,
   `SUB_TYPE` tinyint(4) DEFAULT NULL,
   `SECTION_HEADER` varchar(26) DEFAULT NULL,
   `SECTION_DESCRIPTION` varchar(22) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `SectionHeaders`
+-- Дамп данных таблицы `sectionheaders`
 --
 
-LOCK TABLES `SectionHeaders` WRITE;
-/*!40000 ALTER TABLE `SectionHeaders` DISABLE KEYS */;
-INSERT INTO `SectionHeaders` VALUES (1,1,'Раздел 1: Введение','Знакомство с предметом'),(2,1,'Раздел 2: Основные понятия','Правила и грамматика'),(3,1,'Раздел 3: Ну PCDOS','Оно работает');
-/*!40000 ALTER TABLE `SectionHeaders` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `sectionheaders` (`ID`, `SUB_TYPE`, `SECTION_HEADER`, `SECTION_DESCRIPTION`) VALUES
+(1, 1, 'Раздел 1: Введение', 'Знакомство с предметом'),
+(2, 1, 'Раздел 2: Основные понятия', 'Правила и грамматика'),
+(3, 1, 'Раздел 3: Ну PCDOS', 'Оно работает');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `TestData`
+-- Структура таблицы `sqlite_sequence`
 --
 
-DROP TABLE IF EXISTS `TestData`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `TestData` (
+CREATE TABLE `sqlite_sequence` (
+  `name` varchar(14) DEFAULT NULL,
+  `seq` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `sqlite_sequence`
+--
+
+INSERT INTO `sqlite_sequence` (`name`, `seq`) VALUES
+('SectionHeaders', 3),
+('TestHeaders', 9),
+('TestData', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `testdata`
+--
+
+CREATE TABLE `testdata` (
   `ID` tinyint(4) DEFAULT NULL,
   `PARENT_ID` tinyint(4) DEFAULT NULL,
   `ANSWER_TYPE` varchar(7) DEFAULT NULL,
   `QUEST_STRING` varchar(69) DEFAULT NULL,
-  `CORRECT_ANSWER` varchar(3) DEFAULT NULL,
+  `CORRECT_ANSWER` varchar(12) DEFAULT NULL,
   `ANSWER_COMMENT` varchar(5) DEFAULT NULL,
-  `VAR0` varchar(2) DEFAULT NULL,
-  `VAR1` varchar(2) DEFAULT NULL,
-  `VAR2` varchar(2) DEFAULT NULL,
-  `VAR3` varchar(2) DEFAULT NULL
+  `VAR0` varchar(12) DEFAULT NULL,
+  `VAR1` varchar(12) DEFAULT NULL,
+  `VAR2` varchar(12) DEFAULT NULL,
+  `VAR3` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `TestData`
+-- Дамп данных таблицы `testdata`
 --
 
-LOCK TABLES `TestData` WRITE;
-/*!40000 ALTER TABLE `TestData` DISABLE KEYS */;
-INSERT INTO `TestData` VALUES (1,1,'LESSON','Добро пожаловать!\nЭто первый созданный урок в сиситеме тестирования!','','','','','',''),(2,2,'VARIANT','Беды с башкой?','0','Да :)','Да','Да','Да','Да'),(3,2,'TEXT','Пропушенное слово: \" Привет, _________ !\" ?','мир','','','','','');
-/*!40000 ALTER TABLE `TestData` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `testdata` (`ID`, `PARENT_ID`, `ANSWER_TYPE`, `QUEST_STRING`, `CORRECT_ANSWER`, `ANSWER_COMMENT`, `VAR0`, `VAR1`, `VAR2`, `VAR3`) VALUES
+(1, 1, 'LESSON', 'Добро пожаловать!\nЭто первый созданный урок в сиситеме тестирования!', '', '', '', '', '', ''),
+(2, 2, 'VARIANT', 'Беды с башкой?', '0', 'Да :)', 'Да', 'Да', 'Да', 'Да'),
+(3, 2, 'TEXT', 'Пропушенное слово: \" Привет, _________ !\" ?', 'мир', '', '', '', '', ''),
+(4, 5, 'VARIANT', 'My mother ___ the dishes.', '2', NULL, 'wash', 'washs', 'washes', 'to wash'),
+(5, 5, 'TEXT', 'He often ___ (to use) his telephone', 'uses', NULL, NULL, NULL, NULL, NULL),
+(6, 5, 'VARIANT', 'Does he ___ the answer?', '1', NULL, 'knows', 'know', 'to know', 'knew'),
+(7, 5, 'VARIANT', 'We ___ (not see) the light', '3', NULL, 'does not see', 'not to see', 'don\'t sees', 'do not see');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `TestHeaders`
+-- Структура таблицы `testheaders`
 --
 
-DROP TABLE IF EXISTS `TestHeaders`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `TestHeaders` (
+CREATE TABLE `testheaders` (
   `ID` tinyint(4) DEFAULT NULL,
   `SECTION_ID` tinyint(4) DEFAULT NULL,
   `TEST_TYPE` varchar(6) DEFAULT NULL,
   `TEST_NAME` varchar(26) DEFAULT NULL,
   `TEST_DESCR` varchar(39) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `TestHeaders`
+-- Дамп данных таблицы `testheaders`
 --
 
-LOCK TABLES `TestHeaders` WRITE;
-/*!40000 ALTER TABLE `TestHeaders` DISABLE KEYS */;
-INSERT INTO `TestHeaders` VALUES (1,1,'LESSON','Приветствие','Первый созданный урок!'),(2,1,'TEST','Доброе утро!','Проснись, всё плохо!'),(3,1,'TEST\r\n','Добрый вечер!','Это конец....'),(4,2,'LESSON','Второооой мать его раздел!','Здесь пусто'),(5,2,'TEST','Здесь тоже пусто!','И здесь пусто...'),(6,2,'TEST','Да, да и здесь тоже','А чего ты ожидал?'),(7,2,'TEST','Здесь что-то есть','(нет)'),(8,3,'LESSON','ААААААА!','Не завидую тому кто это будет наполнять'),(9,3,'TEST','(^_^)','The end.');
-/*!40000 ALTER TABLE `TestHeaders` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `testheaders` (`ID`, `SECTION_ID`, `TEST_TYPE`, `TEST_NAME`, `TEST_DESCR`) VALUES
+(1, 1, 'LESSON', 'Приветствие', 'Первый созданный урок!'),
+(2, 1, 'TEST', 'Добрый день', 'Здорова'),
+(3, 1, 'TEST\r\n', 'Добрый вечер!', 'Это конец....'),
+(4, 2, 'LESSON', 'Времена в английском языке', 'Основные времена'),
+(5, 2, 'TEST', 'Grammar: Present Simple', 'Грамматика: настоящее простое время'),
+(6, 2, 'TEST', 'Да, да и здесь тоже', 'А чего ты ожидал?'),
+(7, 2, 'TEST', 'Здесь что-то есть', '(нет)'),
+(8, 3, 'LESSON', 'ААААААА!', 'Не завидую тому кто это будет наполнять'),
+(9, 3, 'TEST', '(^_^)', 'The end.');
 
 --
--- Table structure for table `sqlite_sequence`
+-- Индексы сохранённых таблиц
 --
 
-DROP TABLE IF EXISTS `sqlite_sequence`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sqlite_sequence` (
-  `name` varchar(14) DEFAULT NULL,
-  `seq` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+--
+-- Индексы таблицы `sectionheaders`
+--
+ALTER TABLE `sectionheaders`
+  ADD UNIQUE KEY `ID` (`ID`);
 
 --
--- Dumping data for table `sqlite_sequence`
+-- Индексы таблицы `testdata`
 --
+ALTER TABLE `testdata`
+  ADD UNIQUE KEY `ID` (`ID`);
 
-LOCK TABLES `sqlite_sequence` WRITE;
-/*!40000 ALTER TABLE `sqlite_sequence` DISABLE KEYS */;
-INSERT INTO `sqlite_sequence` VALUES ('SectionHeaders',3),('TestHeaders',9),('TestData',3);
-/*!40000 ALTER TABLE `sqlite_sequence` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+--
+-- Индексы таблицы `testheaders`
+--
+ALTER TABLE `testheaders`
+  ADD UNIQUE KEY `ID` (`ID`);
+COMMIT;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2019-08-22 15:20:26
