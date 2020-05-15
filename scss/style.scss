@@ -622,7 +622,7 @@ textarea:focus {
         &.active,
         &:hover,
         &:focus {
-            background-color: #d7e0fc;
+            background-color: rgba(245, 124, 0, 0.14);
             font-weight: 600;
             color: $bg-default;
         }
@@ -1568,7 +1568,7 @@ textarea:focus {
         @include flex-wrap(wrap);
     }
     &::after {
-        background-color: rgba(214, 223, 251, 0.7);
+        background-color: rgba(252, 243, 215, 0.75);
         top: 0;
         left: 0;
         position: absolute;
@@ -2071,7 +2071,7 @@ textarea:focus {
         top: 0;
         left: 0;
         content: '';
-        background-color: rgba(215, 224, 252, 0.9);
+        background-color: rgba(252, 243, 215, 0.55);
         z-index: -1;
     }
     h3 {

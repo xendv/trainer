@@ -21,7 +21,7 @@
      if($response['success']){
         //include_once ("config.php");
         //Подключаемся к БД users
-        $link = link_to_db("distlearn");
+        $link = link_to_db("trainer");
         /*Создаем запрос на выборку из базы 
         данных для проверки подлиности пользователя*/
         $sql = "SELECT * FROM `users` WHERE `login` = '". $_POST['email'] ."'";
