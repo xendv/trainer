@@ -57,14 +57,39 @@
         mysqli_set_charset ($connection , 'utf8');
         $query = mysqli_query($connection,"SELECT * FROM TestData WHERE PARENT_ID='".$id."'");
         $index = 1;
+        $main_head="";
         while($task_data = mysqli_fetch_assoc($query)){
+            //Set header
+            if($index == 1){
+                //retrieve test data
+                $test_data = mysqli_fetch_assoc(mysqli_query($connection,"SELECT * FROM TestHeaders WHERE ID='".$id."'"));
+                //get test count in section
+                $test_position = mysqli_fetch_assoc(mysqli_query($connection,"SELECT COUNT(ID) AS pos FROM TestHeaders WHERE id <= '{$id}' AND SECTION_ID = '{$test_data['SECTION_ID']}'"));
+                if ($test_data['TEST_TYPE'] == "LESSON"){
+                    $button_str="Отметить пройденным";
+                    $main_head="<h2 style=\"text-align:center\">Лекция {$test_position['pos']}</h2> <h4 style=\"text-align:center\">{$test_data['TEST_NAME']} <br><small>{$test_data['TEST_DESCR']}</small></h3>";
+                } else {
+                    $button_str="Отправить всё и завершить тест";
+                    $main_head="<h2 style=\"text-align:center\">Тест {$test_position['pos']}</h2> <h4 style=\"text-align:center\">{$test_data['TEST_NAME']} <br><small>{$test_data['TEST_DESCR']}</small></h3>";
+                }
+                echo $main_head;
+            }
+            switch ($task_data['ANSWER_TYPE']){
+                case "LESSON":
+                    $head_str="<h6>{$task_data['QUEST_STRING']}</h6>";
+                break;
+                default:
+                    $head_str="<h5>Вопрос {$index}.</h5> <h6>{$task_data['QUEST_STRING']}</h6>";
+                break;
+            }
             echo <<<EOF
-                <div class="regular-page-area content-padding-40">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-content white-bg">
-                                    <h5>Вопрос {$index}. <h6>{$task_data['QUEST_STRING']}</h6>
+            <div class="regular-page-area content-padding-40">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-content white-bg">
+                                        $head_str
+                                    
             EOF;
             switch ($task_data['ANSWER_TYPE']){
                 case "VARIANT":
@@ -123,7 +148,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 content-padding-20-40 align-center">
-                            <button type="button" id="check" class="btn btn-outline-danger">Отправить всё и завершить тест</button>
+                            <button type="button" id="check" class="btn btn-outline-danger">{$button_str}</button>
                         </div>
                     </div>
                 </div>
