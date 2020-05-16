@@ -45,15 +45,19 @@ $("html").on("click", ".course_click", function(e) {
     document.location.href = "test_list.html?id="+this.id;
 });
 
+$(document).on ("click", "#back", function() {
+    window.history.back();
+});
+
 //Test submit
-$(document).on ("click", "#check", function() {
+$(document).on ("click", "#check", function(e) {
     if (confirm("Вы уверены, что хотите завершить тест?")){
         var data = "";
         $('.form').each(function(i, obj) {
             data += ($(this).serialize()+"&");
         });
         //include test id
-        data += "id=2";
+        data += "id=" + test_id;
         //ajax request 
         $.ajax({
             type: 'post',
@@ -64,6 +68,8 @@ $(document).on ("click", "#check", function() {
                     var result = jQuery.parseJSON(html);
                     if (result.success){
                         $("input").prop('disabled', true);
+                        $("#check").text("Выйти");
+                        $("#check").attr('id', 'back');
                         alert("Your test result: " + result.result + "%");
                     }
                 }

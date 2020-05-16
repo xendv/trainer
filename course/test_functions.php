@@ -23,12 +23,21 @@
                                     <table class="table">
                                         <tbody>
             EOF;           
-            $test_header_query = mysqli_query($connection,"SELECT * FROM TestHeaders WHERE SECTION_ID='".$section_data['ID']."'");
+                $test_header_query = mysqli_query($connection,"SELECT * FROM TestHeaders WHERE SECTION_ID='".$section_data['ID']."'");
+                $result_db=link_to_db("trainer");
+                $result =0;
                 while($test_header_data = mysqli_fetch_assoc($test_header_query)){
+                    $result_query = mysqli_query($result_db,"SELECT `score` FROM test_results WHERE test_id='{$test_header_data['ID']}' AND user_id='{$_SESSION['user_id']}'");
+                    if (mysqli_num_rows($result_query)>0){
+                        $result = mysqli_fetch_assoc($result_query)['score'];
+                    } else {
+                        $result = 0;
+                    }
                     echo <<<EOF
                                 <tr class="ripple test_click" id ="{$test_header_data['ID']}">
                                     <td class="test-item"><h6>{$test_header_data['TEST_NAME']}</h6>
                                     <p>{$test_header_data['TEST_DESCR']}</p></td>
+                                    <td class="align-center result-view"><h6>$result%</h6><td>
                                     <td class="align-center"><span class="material-icons arrow-icon">arrow_forward_ios</span>
                         
                                 </tr>
