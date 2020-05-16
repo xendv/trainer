@@ -57,14 +57,29 @@
         mysqli_set_charset ($connection , 'utf8');
         $query = mysqli_query($connection,"SELECT * FROM TestData WHERE PARENT_ID='".$id."'");
         $index = 1;
+        $main_head="";
+        $button_str="Отметить пройденным";
         while($task_data = mysqli_fetch_assoc($query)){
+            switch ($task_data['ANSWER_TYPE']){
+                case "LESSON": 
+                    if ($index==1){$main_head="";}
+                    $head_str="<h2>Лекция {$index} Раздела {$task_data['PARENT_ID']}.</h2> <p>{$task_data['QUEST_STRING']}</p>";
+                break;
+                default:
+                    if ($index==1){$main_head="<h2 style=\"text-align:center\">Тест по подразделу {$task_data['PARENT_ID']}</h2>";}
+                    $head_str="<h5>Вопрос {$index}.</h5> <h6>{$task_data['QUEST_STRING']}</h6>";
+                    $button_str="Отправить всё и завершить тест";
+                break;
+            }
+            if ($index==1){echo $main_head;}
             echo <<<EOF
-                <div class="regular-page-area content-padding-40">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-content white-bg">
-                                    <h5>Вопрос {$index}. <h6>{$task_data['QUEST_STRING']}</h6>
+            <div class="regular-page-area content-padding-40">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-content white-bg">
+                                        $head_str
+                                    
             EOF;
             switch ($task_data['ANSWER_TYPE']){
                 case "VARIANT":
@@ -123,7 +138,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 content-padding-20-40 align-center">
-                            <button type="button" id="check" class="btn btn-outline-danger">Отправить всё и завершить тест</button>
+                            <button type="button" id="check" class="btn btn-outline-danger">{$button_str}</button>
                         </div>
                     </div>
                 </div>

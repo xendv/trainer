@@ -13,7 +13,7 @@
     if (isset($_GET["session_quit"])) { 
         session_destroy();
         unset($_GET["session_quit"]);
-        header("location: index.php");
+        header("location: ../index.php");
         exit();
     }
 ?>
