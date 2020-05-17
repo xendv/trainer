@@ -55,6 +55,8 @@
         }
     }
     
+    
+    
     function form_test_page($id){
         include_once("../functions.php");
         $connection = link_to_db("nnka_db");
@@ -75,10 +77,10 @@
                 //get test count in section
                 $test_position = mysqli_fetch_assoc(mysqli_query($connection,"SELECT COUNT(ID) AS pos FROM TestHeaders WHERE id <= '{$id}' AND SECTION_ID = '{$test_data['SECTION_ID']}'"));
                 if ($test_data['TEST_TYPE'] == "LESSON"){
-                    $button_str="Отметить пройденным";
+                    $button_str='<button type="button" id="check_lesson" class="btn btn-outline-danger">Отметить пройденным</button>';
                     $main_head="<h2 style=\"text-align:center\">Лекция {$test_position['pos']}</h2> <h4 style=\"text-align:center\">{$test_data['TEST_NAME']} <br><small>{$test_data['TEST_DESCR']}</small></h3>";
                 } else {
-                    $button_str="Отправить всё и завершить тест";
+                    $button_str='<button type="button" id="check" class="btn btn-outline-danger">Отправить всё и завершить тест</button>';
                     $main_head="<h2 style=\"text-align:center\">Тест {$test_position['pos']}</h2> <h4 style=\"text-align:center\">{$test_data['TEST_NAME']} <br><small>{$test_data['TEST_DESCR']}</small></h3>";
                 }
                 echo $main_head;
@@ -157,7 +159,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 content-padding-20-40 align-center">
-                            <button type="button" id="check" class="btn btn-outline-danger">{$button_str}</button>
+                            {$button_str}
                         </div>
                     </div>
                 </div>
@@ -187,7 +189,11 @@
                         <div class="seat-rating-fee d-flex justify-content-between">
                             <div class="seat-rating h-100 d-flex align-items-center">
                                 <div class="seat">
-                                    Завершено: 10% 
+                                    Завершено: 
+            EOF;
+            echo get_course_result($course_data['SUB_TYPE'])."%";
+            echo <<<EOF
+                                
                                 </div>
                                 </div>
                                 <div class="course-fee h-100">
@@ -205,5 +211,36 @@
         $connection = link_to_db("trainer");
         $query = mysqli_query($connection,"SELECT * FROM courses WHERE SUB_TYPE='".$sub_type."'");
         return mysqli_fetch_assoc($query);
+    }
+    
+    function get_course_result($sub_type){
+        include_once("../functions.php");
+        $connection = link_to_db("nnka_db");
+        if (!$connection) { 
+            echo "Ошибка подключения к базе данных. Код ошибки: ".mysqli_connect_error(); 
+            exit; 
+        }  
+        //fix charset
+        mysqli_set_charset ($connection , 'utf8');
+        $query = mysqli_query($connection,"SELECT * FROM SectionHeaders WHERE SUB_TYPE='".$sub_type."'");
+        $result_db=link_to_db("trainer");
+        $result =0;
+        $total_count = 0;
+        $num_test_done = 0;
+        while($section_data = mysqli_fetch_assoc($query)){
+            $res = mysqli_query($connection,"SELECT COUNT(ID) AS num FROM TestHeaders WHERE SECTION_ID = '{$section_data['ID']}'");
+            $total_count += mysqli_fetch_assoc($res)['num'];
+            $res = mysqli_query($connection,"SELECT ID FROM TestHeaders WHERE SECTION_ID = '{$section_data['ID']}'");
+            while ($test_id = mysqli_fetch_assoc($res)) {
+                $result_query = mysqli_query($result_db,"SELECT `score` FROM test_results WHERE test_id='{$test_id['ID']}' AND user_id='{$_SESSION['user_id']}'");
+                if (mysqli_num_rows($result_query)>0){
+                    $result = mysqli_fetch_assoc($result_query)['score'];
+                } else {
+                    $result = 0;
+                }
+                $num_test_done += ($result/100);    
+            }
+        }
+        return intval($num_test_done/$total_count*100);
     }
 ?>

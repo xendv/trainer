@@ -78,4 +78,21 @@ $(document).on ("click", "#check", function(e) {
       }
 });
 
+$(document).on ("click", "#check_lesson", function(e) {
+        var data = "id=" + test_id;
+        //ajax request 
+        $.ajax({
+            type: 'post',
+            url: 'test_checker.php',
+            dataType: 'html',
+            data:data,
+                success: function (html) {
+                    var result = jQuery.parseJSON(html);
+                    if (result.success){
+                       window.history.back();
+                    }
+                }
+        });
+});
+
 
