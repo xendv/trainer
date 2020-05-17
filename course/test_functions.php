@@ -87,7 +87,7 @@
             }
             switch ($task_data['ANSWER_TYPE']){
                 case "LESSON":
-                    $head_str="<h6>{$task_data['QUEST_STRING']}</h6>";
+                    $head_str="<p style=\"text-align: center;\">{$task_data['QUEST_STRING']}</p>";
                 break;
                 default:
                     $head_str="<h5>Вопрос {$index}.</h5> <h6>{$task_data['QUEST_STRING']}</h6>";
