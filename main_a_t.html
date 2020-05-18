@@ -13,16 +13,19 @@
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/my_style.css">
+    <link rel="stylesheet" href="course/test_styles.css">
 
     <!-- ##### All Javascript Script ##### -->
     <!-- Bootstrap js -->
     <script src="js/bootstrap/bootstrap.min.js"></script>
     <!-- All Plugins js -->
     <script src="js/jquery.js"></script>
+    <script src="console/console_js.js"></script>
 
 </head>
 <!-- elseif ($_SESSION["user_group_id"]=="3") {
@@ -133,30 +136,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-content white-bg">
-                        <table class="table_red" border="1">
-                            <thead>
-                                <tr><th>Фамилия</th> <th>Имя</th> <th>Отчество</th> <th>Логин</th> <th>Суммарный балл</th> </tr>
-                            </thead>
-                            <tbody>
-                                <?php $link = link_to_db("trainer");
-                            $sql = "SELECT * FROM `users` WHERE `group_id`=3";
-                            $result = mysqli_query($link, $sql);
-                            while($data = mysqli_fetch_array($result)){ 
-                                echo '<tr>';
-                                echo '<td>'.$data['family_name'].'</td>';
-                                echo '<td>'. $data['first_name'].'</td>';
-                                echo '<td>'.$data['middle_name'].'</td>';
-                                echo '<td>'.$data['login'].'</td>';
-                                echo '<td>'.$data['s_score'].'</td>';
-                                echo '<td><input type="submit" class="btn" style="margin: 0 auto" id="del_btn_'.$data['login'].'" name="Submit" value="del" href="#" ></td>';
-                                echo '</tr>';
-                            }
-                            ?>  
-                            </tbody>
+                        <table class="table" id="user_table">
                         </table>
-                            
-                          
-                        
                     </div>
                 </div>
             </div>

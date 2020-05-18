@@ -191,7 +191,7 @@
                                 <div class="seat">
                                     Завершено: 
             EOF;
-            echo get_course_result($course_data['SUB_TYPE'])."%";
+            echo get_course_result($course_data['SUB_TYPE'], $_SESSION['user_id'])."%";
             echo <<<EOF
                                 
                                 </div>
@@ -213,7 +213,7 @@
         return mysqli_fetch_assoc($query);
     }
     
-    function get_course_result($sub_type){
+    function get_course_result($sub_type, $user_id){
         include_once("../functions.php");
         $connection = link_to_db("nnka_db");
         if (!$connection) { 
@@ -232,7 +232,7 @@
             $total_count += mysqli_fetch_assoc($res)['num'];
             $res = mysqli_query($connection,"SELECT ID FROM TestHeaders WHERE SECTION_ID = '{$section_data['ID']}'");
             while ($test_id = mysqli_fetch_assoc($res)) {
-                $result_query = mysqli_query($result_db,"SELECT `score` FROM test_results WHERE test_id='{$test_id['ID']}' AND user_id='{$_SESSION['user_id']}'");
+                $result_query = mysqli_query($result_db,"SELECT `score` FROM test_results WHERE test_id='{$test_id['ID']}' AND user_id='{$user_id}'");
                 if (mysqli_num_rows($result_query)>0){
                     $result = mysqli_fetch_assoc($result_query)['score'];
                 } else {
