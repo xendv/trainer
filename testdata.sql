@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Время создания: Май 20 2020 г., 11:13
--- Версия сервера: 10.4.8-MariaDB
--- Версия PHP: 7.3.11
+-- Host: localhost:3307
+-- Generation Time: May 19, 2020 at 03:56 PM
+-- Server version: 5.7.24
+-- PHP Version: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,56 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `nnka_db`
+-- Database: `1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `sectionheaders`
---
-
-CREATE TABLE `sectionheaders` (
-  `ID` tinyint(4) DEFAULT NULL,
-  `SUB_TYPE` tinyint(4) DEFAULT NULL,
-  `SECTION_HEADER` varchar(26) DEFAULT NULL,
-  `SECTION_DESCRIPTION` varchar(22) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Дамп данных таблицы `sectionheaders`
---
-
-INSERT INTO `sectionheaders` (`ID`, `SUB_TYPE`, `SECTION_HEADER`, `SECTION_DESCRIPTION`) VALUES
-(1, 1, 'Раздел 1: Введение', 'Знакомство с предметом'),
-(2, 1, 'Раздел 2: Основные понятия', 'Правила и грамматика'),
-(3, 1, 'Раздел 3: Заключительный', 'Заключительные слова'),
-(4, 2, 'Раздел 1: Введение', 'Знакомство с предметом');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `sqlite_sequence`
---
-
-CREATE TABLE `sqlite_sequence` (
-  `name` varchar(14) DEFAULT NULL,
-  `seq` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Дамп данных таблицы `sqlite_sequence`
---
-
-INSERT INTO `sqlite_sequence` (`name`, `seq`) VALUES
-('SectionHeaders', 3),
-('TestHeaders', 9),
-('TestData', 3);
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `testdata`
+-- Table structure for table `testdata`
 --
 
 CREATE TABLE `testdata` (
@@ -85,12 +42,12 @@ CREATE TABLE `testdata` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Дамп данных таблицы `testdata`
+-- Dumping data for table `testdata`
 --
 
 INSERT INTO `testdata` (`ID`, `PARENT_ID`, `ANSWER_TYPE`, `QUEST_STRING`, `CORRECT_ANSWER`, `ANSWER_COMMENT`, `VAR0`, `VAR1`, `VAR2`, `VAR3`) VALUES
 (1, 1, 'LESSON', 'Добро пожаловать!\r\nЭто первый созданный урок в системе тестирования!', '', '', '', '', '', ''),
-(2, 2, 'VARIANT', 'В каком веке началось распространение английского языка?', '3', 'Согласно источникам, распространение началось в XVI веке.', 'XXI', 'V', 'XIV', 'XVI'),
+(2, 2, 'VARIANT', 'В каком веке началось распространения английского языка?', '3', 'Да :)', 'XXI', 'V', 'XIV', 'XVI'),
 (3, 2, 'TEXT', 'Сколько букв в английском алфавите?', '26', 'Современный английский алфавит был создан на основе латинского алфавита, в который входило 26 букв.', '', '', '', ''),
 (4, 5, 'VARIANT', 'My mother ___ the dishes.', '2', 'В данном предложении подразумевается обычное регулярное действие, поэтому используется Present Simple. Окончание -s, так как 3 лицо.', 'wash', 'washs', 'washes', 'to wash'),
 (5, 5, 'TEXT', 'He often ___ (to use) his telephone', 'uses', 'Здесь слово often указывает нам на употребление Present Simple. Окончание -s, так как 3 лицо.', NULL, NULL, NULL, NULL),
@@ -110,61 +67,16 @@ INSERT INTO `testdata` (`ID`, `PARENT_ID`, `ANSWER_TYPE`, `QUEST_STRING`, `CORRE
 (19, 11, 'VARIANT', 'Сколько вариантов ответа вы видите в форме ниже?', '3', 'Надеемся, что на этот вопрос вы смогли ответить правильно.', '1', '2', '3', '4'),
 (20, 11, 'TEXT', 'Обязательно ли нажимать на кнопку ниже для отправки ответов (да/нет)?', 'да', 'Конечно же ДА.', NULL, NULL, NULL, NULL),
 (21, 12, 'VARIANT', 'К какой группе языков принадлежит русский язык?', '2', 'Наряду с украинским и белорусским, русский язык относится к восточной группе славянских языков.', 'германская', 'романская', 'славянская', 'балтийская'),
-(22, 12, 'TEXT', 'Сколько млн. человек говорят по-русски (круглый ответ)?', '260', 'По степени распространения русский язык занимает пятое место в мире.', NULL, NULL, NULL, NULL),
-(23, 9, 'LESSON', 'Мы работаем над улучшением функционала.', NULL, NULL, NULL, NULL, NULL, NULL);
-
--- --------------------------------------------------------
+(22, 12, 'TEXT', 'Сколько млн. человек говорят по-русски (круглый ответ)?', '260', 'По степени распространения русский язык занимает пятое место в мире.', NULL, NULL, NULL, NULL);
 
 --
--- Структура таблицы `testheaders`
---
-
-CREATE TABLE `testheaders` (
-  `ID` tinyint(4) DEFAULT NULL,
-  `SECTION_ID` tinyint(4) DEFAULT NULL,
-  `TEST_TYPE` varchar(6) DEFAULT NULL,
-  `TEST_NAME` varchar(26) DEFAULT NULL,
-  `TEST_DESCR` varchar(39) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Дамп данных таблицы `testheaders`
---
-
-INSERT INTO `testheaders` (`ID`, `SECTION_ID`, `TEST_TYPE`, `TEST_NAME`, `TEST_DESCR`) VALUES
-(1, 1, 'LESSON', 'Приветствие', 'Первый созданный урок!'),
-(2, 1, 'TEST', 'Первый тест', 'Основные сведения'),
-(3, 1, 'TEST\r\n', 'Тест на общие знания', 'Структура языка'),
-(4, 2, 'LESSON', 'Времена в английском языке', 'Основные времена'),
-(5, 2, 'TEST', 'Grammar: Present Simple', 'Грамматика: настоящее простое время'),
-(6, 2, 'TEST', 'Grammar:Present Continuous', 'Грамматика: настоящее продолженное'),
-(7, 2, 'TEST', 'Grammar: Present Perfect', 'Грамматика: настоящее совершенное время'),
-(8, 3, 'LESSON', 'Благодарим за прохождение', 'Заключительные слова тестовой версии'),
-(9, 3, 'LESSON', 'От разработчиков', 'Развитие проекта'),
-(10, 4, 'LESSON', 'Приветствие', 'Первый созданный урок!'),
-(11, 4, 'TEST', 'Первый тест', 'Как отвечать на задания.'),
-(12, 4, 'LESSON', 'Основные сведения о языке', 'Вводные слова');
-
---
--- Индексы сохранённых таблиц
+-- Indexes for dumped tables
 --
 
 --
--- Индексы таблицы `sectionheaders`
---
-ALTER TABLE `sectionheaders`
-  ADD UNIQUE KEY `ID` (`ID`);
-
---
--- Индексы таблицы `testdata`
+-- Indexes for table `testdata`
 --
 ALTER TABLE `testdata`
-  ADD UNIQUE KEY `ID` (`ID`);
-
---
--- Индексы таблицы `testheaders`
---
-ALTER TABLE `testheaders`
   ADD UNIQUE KEY `ID` (`ID`);
 COMMIT;
 
