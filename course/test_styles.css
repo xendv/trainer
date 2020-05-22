@@ -171,3 +171,20 @@
     border-color:#f57c00 !important;
     box-shadow: 0 0 0 0.2rem rgba(245, 124, 0,.25) !important;
 }
+
+.hint {
+    padding: 20px;
+    width: 60%;
+    margin: 20px auto 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.label-success{
+    color: #28a745;
+}
+
+.label-fail{
+    color: #dc3545;
+}
+

@@ -25,8 +25,12 @@ $(document).ready(function(e) {
     });
     $(document).on ("click", ".drop", function (e) {
         e.preventDefault();
-        $(this).text($(this).text() === "Скрыть" ? "Показать" : "Скрыть");
-        consoleRequest("request=get_user_result&user_id="+this.id,$("#"+this.id+".dropdown"));
+        if ($(this).text() === "Показать"){
+            consoleRequest("request=get_user_result&user_id="+this.id,$("#"+this.id+".dropdown"));
+            $(this).text("Скрыть");
+        } else {
+            $(this).text("Показать");
+        }
         //$("#"+this.id+".dropdown").slideToggle(200);
         $("#"+this.id+".dropdown").fadeToggle(200);
     });

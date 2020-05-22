@@ -71,6 +71,14 @@ $(document).on ("click", "#check", function(e) {
                         $("#check").text("Выйти");
                         $("#check").attr('id', 'back');
                         alert("Your test result: " + result.result + "%");
+                        $(".hint").each(function(i, obj) {
+                            $(this).slideToggle(400);
+                            if (result[this.id+"_success"]){
+                                $(this).html('<p class="label-success"><span class="material-icons align-center">check_circle_outline</span> Правильный ответ</p><p>'+result[this.id]+'</p>');
+                            } else {
+                                $(this).html('<p class="label-fail"><span class="material-icons align-center">highlight_off</span> Неправильный ответ</p><p>'+result[this.id]+'</p>');
+                            }
+                        });
                     }
                 }
         });

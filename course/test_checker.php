@@ -29,11 +29,15 @@
             } else if (mysqli_num_rows($res) > 0){
                 $tasks_completed = 0;
                 while ($task = mysqli_fetch_assoc($res)){
+                    $response[$task['ID'].'_success'] = false;
                     if (isset($_POST[$task['ID']])){
                         if($_POST[$task['ID']] == $task['CORRECT_ANSWER']) {
                             $tasks_completed++;
+                            $response[$task['ID']."_success"] = true;
                         }
+                        
                     }
+                    $response[$task['ID']] = $task['ANSWER_COMMENT'];
                 }
 
                 // compute result

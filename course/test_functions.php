@@ -147,6 +147,7 @@
             
                                     
             echo <<<EOF
+                                <div class="hint page-content" id="{$task_data['ID']}" style="display:none"></div>
                                 </div>
                             </div>
                         </div>

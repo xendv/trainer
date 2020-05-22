@@ -103,21 +103,21 @@
                                                         </thead>
                                         <!-- Отображение прогресса по курсам-->
                                         <?php 
-                                        include_once("functions.php");
-                                        include_once("course/test_functions.php");
-                                        $connection = link_to_db("trainer");
-                                        $task_db = link_to_db("nnka_db");
-                                        $query = mysqli_query($connection,"SELECT * FROM courses");
-                                        while($data = mysqli_fetch_assoc($query)){
-                                            echo'<tr>';
-                                            echo'<td>';
-                                            echo $data['COURSE_NAME'];
-                                            echo $data['COURSE_SUB_NAME'];
-                                            echo '</td>';
-                                            echo'<td><b>';
-                                            echo get_course_result($data['SUB_TYPE'], $_SESSION['user_id']);
-                                            echo "%</b></td></tr>";
-                                        }?>
+                                            include_once("functions.php");
+                                            include_once("course/test_functions.php");
+                                            $connection = link_to_db("trainer");
+                                            $task_db = link_to_db("nnka_db");
+                                            $query = mysqli_query($connection,"SELECT * FROM courses");
+                                            while($data = mysqli_fetch_assoc($query)){
+                                                echo'<tr>';
+                                                echo'<td>';
+                                                echo $data['COURSE_NAME'];
+                                                echo $data['COURSE_SUB_NAME'];
+                                                echo '</td>';
+                                                echo'<td><b>';
+                                                echo get_course_result($data['SUB_TYPE'], $_SESSION['user_id']);
+                                                echo "%</b></td></tr>";
+                                            }?>
                                        </table>
 
                                 </div>
