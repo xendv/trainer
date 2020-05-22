@@ -41,7 +41,7 @@ CREATE TABLE `courses` (
 
 INSERT INTO `courses` (`SUB_TYPE`, `COURSE_NAME`, `COURSE_SUB_NAME`, `DESCRIPTION`) VALUES
 (1, 'English', 'Language', '- Grammar\r\n- Vocabulary\r\n- Use of english'),
-(2, 'Russian', 'Language', 'Vodka, Medvedi i balalayka');
+(2, 'Russian', 'Language', 'Вводный курс');
 
 -- --------------------------------------------------------
 

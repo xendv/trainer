@@ -214,7 +214,7 @@
     }
     
     function get_course_result($sub_type, $user_id){
-        include_once("../functions.php");
+        //include_once("../functions.php");
         $connection = link_to_db("nnka_db");
         if (!$connection) { 
             echo "Ошибка подключения к базе данных. Код ошибки: ".mysqli_connect_error(); 
@@ -242,5 +242,35 @@
             }
         }
         return intval($num_test_done/$total_count*100);
+    }
+
+    function show_comment($task_id, $usr_answ){
+        $connection = link_to_db("nnka_db");
+        if (!$connection) { 
+            echo "Ошибка подключения к базе данных. Код ошибки: ".mysqli_connect_error(); 
+            exit; 
+        }  
+        mysqli_set_charset ($connection , 'utf8');
+        $query = mysqli_query($connection,"SELECT * FROM TestData WHERE ID='".$task_id."'");
+        $corr_answ= mysqli_fetch_assoc($query)['CORRECT_ANSWER'];
+        if ($usr_answ==$corr_answ){
+            $head_comment= "Correct answer!";
+            $color="green";
+        }
+        else {
+            $head_comment= "Wrong answer!";
+            $color="red";
+        }
+
+        $comment=mysqli_fetch_assoc($query)['ANSWER_COMMENT'];
+        echo '<p style="font-color: ';
+        echo $color;
+        echo '">';
+        echo $head_comment;
+        echo '</p>';
+        echo'<p>';
+        echo $comment;
+        echo '</p>';
+        
     }
 ?>

@@ -9,7 +9,7 @@
     <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Clever | ЛК</title>
+    <title>Trainer | ЛК</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -65,7 +65,7 @@
     </header>
     <!-- ##### Header Area End ##### -->
     <h2 style="text-align: center; margin-top: 10px;margin-bottom: 10px">Личный кабинет обучающегося</h2>  
-    <h3  style="text-align: center; margin-top: 10px;margin-bottom: 10px">Текущий балл: <?php echo $_SESSION['user_score']?></h3>
+    <!-- <h3  style="text-align: center; margin-top: 10px;margin-bottom: 10px">Текущий балл: <?php echo $_SESSION['user_score']?></h3> -->
     
     <!-- ##### Blog Area Start ##### -->
     <section class="blog-area blog-page section-padding-100" style="padding-top: 50px;padding-bottom: 50px ">
@@ -86,9 +86,40 @@
                                         <tr><td>Фамилия: </td> <td><?php echo $_SESSION['user_f_name']?></td></tr>
                                         <tr><td>Имя:  </td> <td><?php echo $_SESSION['user_name']?></td></tr>
                                         <tr><td>Отчество: </td> <td> <?php echo $_SESSION['user_m_name']?></td></tr>
-                                        <tr><td>Текущий балл: </td> <td><?php echo $_SESSION['user_score']?></td></tr>
+                                        <!-- <tr><td>Текущий балл: </td> <td><?php echo $_SESSION['user_score']?></td></tr> -->
                                     </table>
                                     </text>
+                                </div>
+                                <div class = "content">
+                                                    <table class="table table-striped">
+                                                        <thead class="thead-dark">
+                                                            <tr>
+                                                                <th scope="col" colspan='2'># Прогресс по курсам</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="col">Курс</th>
+                                                                <th scope="col">% выполнения</th>
+                                                            </tr>
+                                                        </thead>
+                                        <!-- Отображение прогресса по курсам-->
+                                        <?php 
+                                        include_once("functions.php");
+                                        include_once("course/test_functions.php");
+                                        $connection = link_to_db("trainer");
+                                        $task_db = link_to_db("nnka_db");
+                                        $query = mysqli_query($connection,"SELECT * FROM courses");
+                                        while($data = mysqli_fetch_assoc($query)){
+                                            echo'<tr>';
+                                            echo'<td>';
+                                            echo $data['COURSE_NAME'];
+                                            echo $data['COURSE_SUB_NAME'];
+                                            echo '</td>';
+                                            echo'<td><b>';
+                                            echo get_course_result($data['SUB_TYPE'], $_SESSION['user_id']);
+                                            echo "%</b></td></tr>";
+                                        }?>
+                                       </table>
+
                                 </div>
                         </div>
                     </div>
@@ -111,7 +142,7 @@
                                     <td><input type="password" class="form-control" name = "new_pass2" size = "32" maxlength = "32" required></td></tr>
                                 </table> 
                                 <hr>
-                        <button class="btn" style="background-color: rgba(252, 149, 15, 0.479);" name="change_pass" href="#">Подтвердить изменения</button>
+                        <button class="btn" style="position: relative; left: 50%; transform: translate(-50%, 0);background-color: rgba(252, 149, 15, 0.479);" name="change_pass" href="#">Подтвердить изменения</button>
                             </form> 
                         </div>
                         </div>
