@@ -17,7 +17,7 @@
     $c_m_name = filtered_input($_POST['m_name']);
     //Проверка данных
     if(empty($_POST['login'])){
-        $response['login_error'] = '* Поле Ваш логин (почта) не может быть пустым!';
+        $response['login_error'] = '* Поле не может быть пустым!';
         $response['success'] = false;
     } else {
         //Проверяем, что ввдена электронная почта
@@ -27,32 +27,32 @@
         }
     }
     if(empty($_POST['pass'])){
-        $response['pass_error'] = '* Поле Пароль не может быть пустым!';
+        $response['pass_error'] = '* Поле не может быть пустым!';
         $response['success'] = false;
     } elseif (empty(filtered_input($_POST['pass']))){
         $response['pass_error'] = '* В целях безопасности Пароль не может состоять из одних пробелов!';
         $response['success'] = false;
     }
     if(empty($_POST['pass_2'])) {
-        $response['pass2_error'] = '* Поле Подтверждения пароля не может быть пустым!';
+        $response['pass2_error'] = '* Поле не может быть пустым!';
         $response['success'] = false;
     }
     if(empty($c_name)){
-        $response['name_error'] = '* Поле Имя не может быть пустым!';
+        $response['name_error'] = '* Поле не может быть пустым!';
         $response['success'] = false;
     } elseif (!preg_match('/^[а-яА-Яa-zA-Z]+$/u',$c_name)){
         $response['name_error'] = '* Разрешены только русские и латинские буквы!';
         $response['success'] = false;
     }
     if(empty($c_f_name)){
-        $response['f_name_error'] = '* Поле Фамилия не может быть пустым!';
+        $response['f_name_error'] = '* Поле не может быть пустым!';
         $response['success'] = false;
     } elseif (!preg_match('/^[а-яА-Яa-zA-Z]+$/u',$c_f_name)){
         $response['f_name_error'] = '* Разрешены только русские и латинские буквы!';
         $response['success'] = false;
     }
     if(empty($c_m_name)){
-        $response['m_name_error'] = '* Поле Отчество не может быть пустым!';
+        $response['m_name_error'] = '* Поле не может быть пустым!';
         $response['success'] = false;
     } elseif (!preg_match('/^[а-яА-Яa-zA-Z]+$/u',$c_m_name)){
         $response['m_name_error'] = '* Разрешены только русские и латинские буквы!';
@@ -67,7 +67,7 @@
     //Подключаемся к БД
     include_once ("config.php");
     //include_once ("bd.php");
-    $link = link_to_db("distlearn");
+    $link = link_to_db(DB_DATABASE);
     /*Проверяем существует ли у нас
     такой пользователь в БД*/
     $sql = "SELECT `login` FROM `users` WHERE `login` = '". $c_login ."'";

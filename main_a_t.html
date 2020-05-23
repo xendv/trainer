@@ -128,9 +128,7 @@
                             </table>
                             <hr>
                             <p id="result"  style="text-align: center; color:green;"></p> </br>
-                            <button class="btn"
-                                style="position: relative; left: 50%; transform: translate(-50%, 0);background-color: rgba(252, 149, 15, 0.479);"
-                                name="change_pass" id="change_pass" href="#">Подтвердить изменения</button>
+                            <button class="orange_button" name="change_pass" id="change_pass" href="#">Подтвердить изменения</button>
                             </form>
                             <script type="text/javascript">
                                 $(document).on("click", "#change_pass", function (e) {
@@ -178,8 +176,101 @@
             </div>
         </div>
     </div>
-
     <!-- ##### Students' Data End ##### -->
+
+    <!-- ##### Manage Students Start ##### -->
+    <section class="blog-area blog-page section-padding-100 align-items-center" style="padding-top: 50px;padding-bottom: 0px ">
+        <div class="container align-items-center">
+                <!-- Single Blog Area -->
+                    <div class="single-blog-area mb-100" style="max-width: 40rem;">
+                        <!-- Blog Content -->
+                        <div class="blog-content align-items-center">
+                            <h4 style="text-align: center;">Добавить ученика</h4>
+                            <div class="forms" style="align-items: center">
+                                <form id="reg_form" action="" method="POST">
+                                    <table>
+                                        <table class="table">
+                                            <tr>
+                                                <td><label>Электронная почта:</label></td>
+                                                <td><input type="text" class="form-control" name="login" size="15"
+                                                        maxlength="32" required>
+                                                    <p id="login_error" class="has-error" style="text-align: center;"></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Пароль:</label></td>
+                                                <td><input type="password" class="form-control" name="pass" size="15"
+                                                        maxlength="15" required>
+                                                    <p id="pass_error" class="has-error" style="text-align: center;"></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Подтвердите пароль:</label></td>
+                                                <td><input type="password" class="form-control" name="pass_2" size="15"
+                                                        maxlength="32" required>
+                                                    <p id="pass2_error" class="has-error" style="text-align: center;"></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Фамилия:</label></td>
+                                                <td><input type="text" class="form-control" name="f_name" size="15"
+                                                        maxlength="32" required>
+                                                    <p id="f_name_error" class="has-error" style="text-align: center;"></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Имя:</label></td>
+                                                <td><input type="text" class="form-control" name="name" size="15"
+                                                        maxlength="32" required>
+                                                    <p id="name_error" class="has-error" style="text-align: center;"></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Отчество:</label></td>
+                                                <td><input type="text" class="form-control" name="m_name" size="15"
+                                                        maxlength="32" required>
+                                                    <p id="m_name_error" class="has-error" style="text-align: center;"></p>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                        <hr>
+                                        <button class="orange_button" id="add_btn" name="Submit" href="#">Зарегистрировать ученика</button>
+                                </form>
+                                <script type="text/javascript">
+                                    $(document).on("click", "#add_btn", function (e) {
+                                        e.preventDefault();
+                                        //ajax form validation
+                                        $.ajax({
+                                            type: 'post',
+                                            url: 'reg_ver.php',
+                                            dataType: 'html',
+                                            data: $("#reg_form").serialize(),
+                                            success: function (html) {
+                                                var result = jQuery.parseJSON(html);
+                                                if (result.success) {
+                                                    document.location.href = "main_a_t.html";
+                                                } else {
+                                                    $("#login_error").text(result.login_error);
+                                                    $("#pass_error").text(result.pass_error);
+                                                    $("#pass2_error").text(result.pass2_error);
+                                                    $("#f_name_error").text(result.f_name_error);
+                                                    $("#name_error").text(result.name_error);
+                                                    $("#m_name_error").text(result.m_name_error);
+                                                }
+                                            }
+                                        });
+                                    });
+                                </script>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- ##### Manage Students End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">

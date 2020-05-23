@@ -12,14 +12,14 @@
 
     //Проверка данных
     if(empty($_POST['del_login'])){
-        $response['del_login_error'] = '* Поле Электронная почта не может быть пустым!';
+        $response['del_login_error'] = '* Поле не может быть пустым!';
         $response['success'] = false;
     } 
     else{
         //Подключаемся к БД
         include_once ("config.php");
         //include_once ("bd.php");
-        $link = link_to_db("distlearn");
+        $link = link_to_db("DB_DATABASE");
         /*Проверяем существует ли у нас
         такой пользователь в БД*/
         $sql = "SELECT `login` FROM `users` WHERE `login` = '". $c_login ."'";
