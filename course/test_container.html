@@ -25,7 +25,6 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
     <title>Trainer - Course section</title>
@@ -50,13 +49,13 @@
                 <!-- Menu -->
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
                     <!-- Logo -->
-                    <a class="nav-brand" href="../index.html"><img src="../img/core-img/logo.png" alt=""></a>
+                    <a class="nav-brand" href="courses.html"><img src="../img/core-img/logo.png" alt=""></a>
                         <!-- Register / Login -->
                         <div class="register-login-area">
                             <text class="btn"><?php echo $_SESSION['user_login'] ?>: </text>
-                            <a class="btn" href="courses.html">Мои курсы</a>
+                            <a class="btn active" href="courses.html">Мои курсы</a>
                             <a class="btn" href="../main.html">Личный кабинет</a>
-                            <a class="btn active" href="../index.html?session_quit=1" name = "logout_btn">Выйти</a>
+                            <a class="btn" href="../index.html?session_quit=1" name = "logout_btn">Выйти</a>
                         </div>
                 </nav>
             </div>

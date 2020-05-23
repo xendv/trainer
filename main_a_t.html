@@ -6,7 +6,6 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
     <title>Trainer | Admin</title>
@@ -23,7 +22,6 @@
     <!-- ##### All Javascript Script ##### -->
     <!-- Bootstrap js -->
     <script src="js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
     <script src="js/jquery.js"></script>
     <script src="console/console_js.js"></script>
 
@@ -54,13 +52,13 @@
                 <!-- Menu -->
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
                     <!-- Logo -->
-                    <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                    <a class="nav-brand" href="course/courses.html"><img src="img/core-img/logo.png" alt=""></a>
                         <!-- Register / Login -->
                         <div class="register-login-area">
                             <text style=" font-size: medium;"><?php echo $_SESSION['user_login'] ?>: </text>
-                            <a class="btn" href="main_a_t.html">Личный кабинет</a>
+                            <a class="btn active" href="main_a_t.html">Личный кабинет</a>
                             <a class="btn" href="course/courses.html">Задания</a>
-                            <a class="btn active" href="index.html?session_quit=1" name = "logout_btn">Выйти</a>
+                            <a class="btn" href="index.html?session_quit=1" name = "logout_btn">Выйти</a>
                         </div>
                 </nav>
             </div>
@@ -179,10 +177,12 @@
     <!-- ##### Students' Data End ##### -->
 
     <!-- ##### Manage Students Start ##### -->
-    <section class="blog-area blog-page section-padding-100 align-items-center" style="padding-top: 50px;padding-bottom: 0px ">
+    <section class="regular-page-area section-padding-100 align-items-center" style="padding-top: 20px;padding-bottom: 0px; margin: auto;  ">
         <div class="container align-items-center">
+            <div class="row">
+                <div class="col-12">
                 <!-- Single Blog Area -->
-                    <div class="single-blog-area mb-100" style="max-width: 40rem;">
+                    <div class="page-content mb-100" style="max-width: 40rem; margin: auto;">
                         <!-- Blog Content -->
                         <div class="blog-content align-items-center">
                             <h4 style="text-align: center;">Добавить ученика</h4>
@@ -268,6 +268,7 @@
                         </div>
                     </div>
                 </div>
+               </div>
             </div>
     </section>
     <!-- ##### Manage Students End ##### -->
