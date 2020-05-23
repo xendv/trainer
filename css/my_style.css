@@ -16,41 +16,8 @@ body{
 table{
 	margin: auto
 }
-.table_col {
-	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-	font-size: 14px;
-	border-collapse: collapse;
-	text-align: center;
-}
-.table_col th, .table_col td:first-child {
-	background: #AFCDE7;
-	color: white;
-	padding: 10px 20px;
-}
-.table_col th, .table_col td {
-	border-style: solid;
-	border-width: 0 1px 1px 0;
-	border-color: white;
-	}
-	.table_col td {
-	background: #D8E6F3;
-	}
-.table_col th:first-child, .table_col td:first-child {
-	text-align: left;
-}
 
-
-.table_red {width: 100%;border-collapse: separate; border-spacing: 4px; border: 0px;  font-size: 1.25rem; text-align: center; padding: 20px; }
-.table_red tr {color: #f57c00;}
-.table_red label {padding: 10px;  }
-.table_red thead {color: #ffffff; font-weight: bold;  }
-.table_red th {color: #ffffff; font-weight: bold; border: 1px solid #f57c00;border-radius: 5px;}
-.table_red thead,.table_red tr,.table_red td { background: #f57c00;}
-.table_red tbody,.table_red tr,.table_red td {border: 1px solid #f57c00;border-radius: 5px;  background: rgb(255, 255, 255);}
-.table_red tbody,.table_red tr/*,.table_red td:hover*/ {background: rgba(245, 124, 0, 0.14); transition-duration: 0.2s;}
-/*.table_red td:hover {background: rgb(248, 244, 189); transition-duration: 0.2s;} */
-/*---Tables---*/
-
+.orange th {border-color: white; background-color:rgb(235, 143, 56);color: white;}
 /*---Buttons---*/
 
 .has-error{
