@@ -132,18 +132,46 @@
                         <div class="blog-content align-items-center">
                             <h4 style="text-align: center">Сменить настройки пользователя</h4>
                             <div class="forms" style="align-items: center">
-                            <form  action="change_pass_ver.php" method="POST" > 
+                            <form  id="change_pass_form" action="#" method="POST" > 
                                 <table class="table"><tr></tr>
                                     <td>Текущий пароль:</td>
-                                    <td></div><input type="password" class="form-control" name = "curr_pass" size = "32" maxlength = "32" required></td></tr>
+                                    <td></div><input type="password" class="form-control" name = "curr_pass" size = "32" maxlength = "32" required>
+                                    <p id="curr_pass_error" class="has-error" style="text-align: center;"></p></td></tr>
                                     <tr><td>Новый пароль:</td>
-                                    <td><input type="password" class="form-control" name = "new_pass" size = "32" maxlength = "32" required></td></tr>
+                                    <td><input type="password" class="form-control" name = "new_pass" size = "32" maxlength = "32" required>
+                                    <p id="new_pass_error" class="has-error" style="text-align: center;"></p></td></tr>
                                     <tr><td>Подтвердите новый пароль:</td>
-                                    <td><input type="password" class="form-control" name = "new_pass2" size = "32" maxlength = "32" required></td></tr>
+                                    <td><input type="password" class="form-control" name = "new_pass2" size = "32" maxlength = "32" required>
+                                    <p id="new_pass2_error" class="has-error"  style="text-align: center;"></p></td></tr>
                                 </table> 
                                 <hr>
-                        <button class="btn" style="position: relative; left: 50%; transform: translate(-50%, 0);background-color: rgba(252, 149, 15, 0.479);" name="change_pass" href="#">Подтвердить изменения</button>
+                                <p id="result" class="has-error"  style="text-align: center;"></p> </br>
+                        <button class="btn" style="position: relative; left: 50%; transform: translate(-50%, 0);background-color: rgba(252, 149, 15, 0.479);" name="change_pass" id="change_pass" href="#">Подтвердить изменения</button>
                             </form> 
+                            <script type="text/javascript">
+                                $(document).on("click","#change_pass",function(e) {
+                                            e.preventDefault();
+                                            //ajax form validation
+                                            $.ajax({
+                                                type: 'post',
+                                                url: 'change_pass_ver.php',
+                                                dataType: 'html',
+                                                data:$("#change_pass_form").serialize(),
+                                                success: function (html) {
+                                                    var result = jQuery.parseJSON(html);
+                                                    if(result.success){
+                                                        //document.location.href = "main.html";
+                                                        $("#result").text(result.response);
+                                                    }else{
+                                                        $("#curr_pass_error").text(result.curr_pass_error);
+                                                        $("#new_pass_error").text(result.new_pass_error);
+                                                        $("#new_pass2_error").text(result.new_pass2_error);
+                                                        $("#result").text(result.response);
+                                                    }
+                                                }
+                                            });
+                                        });
+                            </script>
                         </div>
                         </div>
                     </div>
