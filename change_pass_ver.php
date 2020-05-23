@@ -9,7 +9,6 @@ session_start();
     $response['new_pass2_error'] = "";
     $response['response']="";
 
-    $err=''; 
     if(empty($_POST['curr_pass']) ){
         $response['curr_pass_error'] = 'Поле не может быть пустым!';
         $response['success'] = false;
@@ -41,43 +40,32 @@ session_start();
             //print_r($row);
 
             if(md5($_POST['curr_pass']) != $row['password']){
-                $err = $err.'Введен неправильный текущий пароль!';
+                $response['curr_pass_error'] ='Введен неправильный текущий пароль!';
                 $response['success'] = false;
             }
-            if(!empty($err))
-            {
-                $response['response']=$err;
-                $response['success']=false;
-            }
-            else{        
+            if($response['success'])     
                 //Проверка данных
-    
-                if(empty(filtered_input($_POST['new_pass'])))
-                    $err = $err.'В целях безопасности Пароль не может состоять из одних пробелов!<br/>';
-
-                if(empty($_POST['new_pass2']))
-                    $err = $err.'Поле Подтверждения пароля не может быть пустым!<br/>';
-            
+                if(empty(filtered_input($_POST['new_pass']))){
+                     $response['new_pass_error']='В целях безопасности Пароль не может состоять из одних пробелов!';
+                     $response['success'] = false;
+                }
+                   
+                if(empty($_POST['new_pass2'])){
+                    $response['new_pass2_error']='Поле Подтверждения пароля не может быть пустым!';
+                    $response['success'] = false;
+                }
                 //Проверяем наличие ошибок и выводим пользователю
-                if(!empty($err)){
-                    $response['response']=$err;
-                    $response['success']=false;
-                }     
-                else{
+                if($response['success']){
                     /*Продолжаем проверять введеные данные
-                    Проверяем на совподение пароли*/
+                    Проверяем на совпадение паролей*/
                     if($_POST['new_pass'] != $_POST['new_pass2']){
-                        $err = 'Пароли не совпадают';
-                        $response['response']=$err;
+                        $response['new_pass_error']='Пароли не совпадают';
+                        $response['new_pass2_error']='Пароли не совпадают';
                         $response['success']=false;
                     }
 
                     //Проверяем наличие ошибок и выводим пользователю
-                    if(!empty($err)){
-                        $response['response']=$err;
-                        $response['success']=false;
-                    }
-                    else{
+                    if($response['success']){
                         //Хешируем пароль
                         $pass = md5($_POST['new_pass']);
 
@@ -95,11 +83,9 @@ session_start();
                         }
                     }
                 }
-            }
+            } else  $response['response']="Пользователь не найден!";
         }
-        else  $response['response']="Пользователь не найден!";
-
-    }
+        
     echo json_encode($response);
 
 /*
